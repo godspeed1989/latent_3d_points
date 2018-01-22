@@ -1,0 +1,86 @@
+$ python train.py 
+             n_input: [2048, 3]
+                loss: emd
+             decoder: <function decoder_with_fc_only at 0x7f08f64a7d90>
+             encoder: <function encoder_with_convs_and_symmetry_new at 0x7f08f64a7e18>
+        encoder_args: {'n_filters': [64, 128, 128, 256, 128], 'filter_sizes': [1], 'strides': [1], 'b_norm': True}
+        decoder_args: {'layer_sizes': [256, 256, 6144], 'b_norm': False, 'b_norm_finish': False}
+          batch_size: 8
+       learning_rate: 0.0005
+           train_dir: ./train_dir
+     training_epochs: 500
+            n_output: [2048, 3]
+     experiment_name: experiment_ae_2048_pts_128_bneck_emd
+
+Building Encoder [64, 128, 128, 256, 128]
+WARNING:tensorflow:From /usr/lib/python3.6/site-packages/tflearn/initializations.py:119: UniformUnitScaling.__init__ (from tensorflow.python.ops.init_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.initializers.variance_scaling instead with distribution=uniform to get equivalent behavior.
+
+encoder_conv_layer_0 conv params = [1, 1, 3, 64] [64]
+bnorm params = [64] [64]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Relu:0", shape=(?, 2048, 64), dtype=float32)
+output size: [None, 2048, 64] 
+
+encoder_conv_layer_1 conv params = [1, 1, 64, 128] [128]
+bnorm params = [128] [128]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Relu_1:0", shape=(?, 2048, 128), dtype=float32)
+output size: [None, 2048, 128] 
+
+encoder_conv_layer_2 conv params = [1, 1, 128, 128] [128]
+bnorm params = [128] [128]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Relu_2:0", shape=(?, 2048, 128), dtype=float32)
+output size: [None, 2048, 128] 
+
+encoder_conv_layer_3 conv params = [1, 1, 128, 256] [256]
+bnorm params = [256] [256]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Relu_3:0", shape=(?, 2048, 256), dtype=float32)
+output size: [None, 2048, 256] 
+
+encoder_conv_layer_4 conv params = [1, 1, 256, 128] [128]
+bnorm params = [128] [128]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Relu_4:0", shape=(?, 2048, 128), dtype=float32)
+output size: [None, 2048, 128] 
+
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Max:0", shape=(?, 128), dtype=float32)
+
+Building Decoder [256, 256, 6144]
+decoder_fc_0 FC params =  [128, 256] [256]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Relu_5:0", shape=(?, 256), dtype=float32)
+output size: [None, 256] 
+
+decoder_fc_1 FC params =  [256, 256] [256]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/Relu_6:0", shape=(?, 256), dtype=float32)
+output size: [None, 256] 
+
+decoder_fc_2 FC (last) params =  [256, 6144] [6144]
+Tensor("experiment_ae_2048_pts_128_bneck_emd/decoder_fc_2/BiasAdd:0", shape=(?, 6144), dtype=float32)
+output size: [None, 6144] 
+
+load dataset
+loading 57449 [2048 x 3] pc...
+/run/media/yanlin/9aa41fd0-c558-4ded-bb52-acf32e87c835/000Library/latent_3d_points/yanlin/dataset.py:37: UserWarning: Point clouds with the same model name were loaded.
+  warnings.warn('Point clouds with the same model name were loaded.')
+57449 pclouds were loaded. They belong in 57 shape-classes.
+
+start to train
+----- epoch 1 -----
+100% (7181 of 7181) |#####################| Elapsed Time: 0:09:15 Time: 0:09:15
+Epoch: 0001 training time (minutes)= 9.2616 loss= 139.554132234
+----- epoch 2 -----
+100% (7181 of 7181) |#####################| Elapsed Time: 0:09:19 Time: 0:09:19
+Epoch: 0002 training time (minutes)= 9.3192 loss= 123.580862349
+----- epoch 3 -----
+100% (7181 of 7181) |#####################| Elapsed Time: 0:09:20 Time: 0:09:20
+Epoch: 0003 training time (minutes)= 9.3400 loss= 115.732265443
+----- epoch 4 -----
+100% (7181 of 7181) |#####################| Elapsed Time: 0:09:22 Time: 0:09:22
+Epoch: 0004 training time (minutes)= 9.3817 loss= 112.870317016
+----- epoch 5 -----
+100% (7181 of 7181) |#####################| Elapsed Time: 0:09:19 Time: 0:09:19
+Epoch: 0005 training time (minutes)= 9.3236 loss= 110.753017046
+----- epoch 6 -----
+100% (7181 of 7181) |#####################| Elapsed Time: 0:09:19 Time: 0:09:19
+Epoch: 0006 training time (minutes)= 9.3329 loss= 109.281628118
+----- epoch 7 -----
+
